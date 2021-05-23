@@ -7,3 +7,6 @@ The Franka Emika Pnada has several available controller interfaces for the user 
 ## Proposal
 
 - Two interfaces are designed: one utilizing euler angles and the other quaternions.
+
+### Euler Angles
+
