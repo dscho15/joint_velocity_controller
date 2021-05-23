@@ -13,9 +13,3 @@ The Franka Emika Pnada has several available controller interfaces for the user 
 The two interfaces calculates the jacobian and uses the moore-penrose pseudoinverse to determine the desired joint-velocities.
 
 ### Euler Angles
-
-The interface 
-
-```math
-  q_d = J_a^(-1) \dot{v} + K_p e
-```
