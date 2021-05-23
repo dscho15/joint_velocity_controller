@@ -17,5 +17,5 @@ The two interfaces calculates the jacobian and uses the moore-penrose pseudoinve
 The interface 
 
 ```math
-  q_d = J_{a}^{-1} \left( \dot{v} + K_p e \right)
+  q_d = J_a^(-1) \dot{v} + K_p e
 ```
