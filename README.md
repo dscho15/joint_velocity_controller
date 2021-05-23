@@ -1,4 +1,4 @@
-# joint_velocity_controller
+# Joint Velocity Controller
 
 ## The purpose
 
