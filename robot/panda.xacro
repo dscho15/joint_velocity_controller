@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
+
+    <xacro:macro name="panda_arm" params="robot_name description_pkg:='franka_description' ">
+
+        <link name = "world"/>
+
+        <link name="${robot_name}_link0">
+            <inertial>
+                <mass value="1.937868" />
+                <origin rpy="0 0 0" xyz="-0.025566 -2.88e-05 0.057332" />
+                <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+            </inertial>
+        </link>
+
+        <joint name="robot_to_world" type="fixed">
+            <parent link="world"/>
+            <child link="panda_link0"/>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </joint>
+
+        <link name="${robot_name}_link1">
+            <inertial>
+                <mass value="4.970684" />
+                <origin rpy="0 0 0" xyz="3.875e-03 2.081e-03 -0.1750" />
+                <inertia ixx="0.551121276649726" ixy="-9.891702555950000e-05" ixz="0.003401254912500" iyy="0.554308164573063" iyz="0.017358801154300" izz="0.009020836222789" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint1" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973" />
+            <origin rpy="0 0 0" xyz="0 0 0.333" />
+            <parent link="${robot_name}_link0" />
+            <child link="${robot_name}_link1" />
+            <axis xyz="0 0 1" />
+            <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link2">
+            <inertial>
+                <origin rpy="0 0 0" xyz="-3.141e-03 -2.872e-02 3.495e-03" />
+                <mass value="0.646926" />
+                <inertia ixx="0.007420488375978" ixy="-0.003866641116064" ixz="0.010246898178992" iyy="0.028095715287805" iyz="6.390638970536000e-04" izz="0.025455008098310" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint2" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.7628" soft_upper_limit="1.7628" />
+            <origin rpy="${-pi/2} 0 0" xyz="0 0 0" />
+            <parent link="${robot_name}_link1" />
+            <child link="${robot_name}_link2" />
+            <axis xyz="0 0 1" />
+            <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link3">
+            <inertial>
+                <origin rpy="0 0 0" xyz="2.7518e-02 3.9252e-02 -6.6502e-02" />
+                <mass value="3.228604" />
+                <inertia ixx="0.017989073985929" ixy="-0.001273666859324" ixz="-0.017304351893438" iyy="0.019431618000394" iyz="-0.021232742878160" izz="0.003410797707480" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint3" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973" />
+            <origin rpy="${pi/2} 0 0" xyz="0 -0.316 0" />
+            <parent link="${robot_name}_link2" />
+            <child link="${robot_name}_link3" />
+            <axis xyz="0 0 1" />
+            <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link4">
+            <inertial>
+                <origin rpy="0 0 0" xyz="-5.317e-02 1.04419e-01 2.7454e-02" />
+                <mass value="3.587895" />
+                <inertia ixx="-0.015971270250860" ixy="-0.012123843173626" ixz="-0.006569355026276" iyy="0.006704569575549" iyz="0.018926487577369" izz="-0.020940149052540" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint4" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.0718" soft_upper_limit="-0.0698" />
+            <origin rpy="${pi/2} 0 0" xyz="0.0825 0 0" />
+            <parent link="${robot_name}_link3" />
+            <child link="${robot_name}_link4" />
+            <axis xyz="0 0 1" />
+            <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link5">
+            <inertial>
+                <origin rpy="0 0 0" xyz="-1.1953e-02 4.1065e-02 -3.8437e-02" />
+                <mass value="1.225946" />
+                <inertia ixx="0.031670429041964" ixy="-0.002718755526673" ixz="-0.003473754482437" iyy="0.027487627674740" iyz="-0.001706052052098" izz="0.006384489237171" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint5" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973" />
+            <origin rpy="${-pi/2} 0 0" xyz="-0.0825 0.384 0" />
+            <parent link="${robot_name}_link4" />
+            <child link="${robot_name}_link5" />
+            <axis xyz="0 0 1" />
+            <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link6">
+            <inertial>
+                <origin rpy="0 0 0" xyz="6.0149e-02 -1.4117e-02 -1.0517e-02" />
+                <mass value="1.666555" />
+                <inertia ixx="0.001447539641829" ixy="-0.001306110902883" ixz="-0.002212241082781" iyy="-0.001859766133107" iyz="5.884309026853950e-04" izz="-9.285602302389487e-04" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint6" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-0.0175" soft_upper_limit="3.7525" />
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0" />
+            <parent link="${robot_name}_link5" />
+            <child link="${robot_name}_link6" />
+            <axis xyz="0 0 1" />
+            <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link7">
+            <inertial>
+                <origin rpy="0 0 0" xyz="1.0517e-02 -4.252e-03 6.1597e-02" />
+                <mass value="7.35522e-01" />
+                <inertia ixx="0.009711991609050" ixy="-4.608912816842480e-04" ixz="-7.195173382162220e-04" iyy="0.007154935387572" iyz="-9.336408935917680e-04" izz="0.004720348032639" />
+            </inertial>
+        </link>
+
+        <joint name="${robot_name}_joint7" type="revolute">
+            <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973" />
+            <origin rpy="${pi/2} 0 0" xyz="0.088 0 0" />
+            <parent link="${robot_name}_link6" />
+            <child link="${robot_name}_link7" />
+            <axis xyz="0 0 1" />
+            <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100" />
+            <dynamics damping="1.0" />
+        </joint>
+
+        <link name="${robot_name}_link8" />
+
+        <joint name="${robot_name}_joint8" type="fixed">
+            <origin rpy="0 0 0" xyz="0 0 0.107" />
+            <parent link="${robot_name}_link7" />
+            <child link="${robot_name}_link8" />
+        </joint>
+
+    </xacro:macro>
+    
+</robot>

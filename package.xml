@@ -1,0 +1,29 @@
+
+<package format="2">
+    
+    <name> joint_velocity_controller </name>
+     
+    <version>0.1.0</version>
+     
+    <description>
+        A python package.
+    </description>
+    
+    <maintainer email="danieltoftesch@hotmail.com">Daniel Tofte Schøn</maintainer>
+    
+    <license>MIT</license>
+
+    <author email="danieltoftesch@hotmail.com">Daniel Tofte Schøn</author>
+    
+    <maintainer email="danieltoftesch@hotmail.com">Daniel Tofte Schøn</maintainer>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <depend>roscpp</depend>
+    <depend>urdf</depend>
+    <depend>kdl_parser</depend>
+    <depend>xacro</depend>
+    <depend>plotjuggler</depend>
+    <depend>std_msgs</depend>
+   
+   </package>

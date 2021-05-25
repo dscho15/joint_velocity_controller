@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find joint_velocity_controller)/robot/panda.urdf.xacro'"/>
+    <node name="joint_velocity_controller_node" pkg="joint_velocity_controller" type="joint_velocity_controller_node" respawn="false" output="screen" args="" />
+</launch>
