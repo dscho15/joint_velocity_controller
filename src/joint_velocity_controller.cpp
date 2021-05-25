@@ -129,10 +129,7 @@ Eigen::VectorXd x_error_quat(const Eigen::VectorXd q_cur_, const Eigen::VectorXd
     // Define quaternions 
     Eigen::Quaterniond quat_cur(R_cur);
     Eigen::Quaterniond quat_d(R_d);
-    Eigen::Quaterniond quat_e;
-
-    // Calculate error quaternion
-    quat_e = quat_d * quat_cur.inverse();
+    Eigen::Quaterniond quat_e = quat_d * quat_cur.inverse();
 
     // Compute Xerror
     x_err.block(0, 0, 3, 1) << x_d.p.data[0] - x_cur.p.data[0], x_d.p.data[1] - x_cur.p.data[1], x_d.p.data[2] - x_cur.p.data[2];
