@@ -6,11 +6,11 @@ The Franka Emika Panda has several available controller interfaces for the user.
 
 ## Proposal
 
-- Two interfaces are designed: one utilizing euler angles and the other quaternions.
+- Two interfaces are designed, one utilizing euler angles and the other quaternions.
 
 ### Common
 
-The two interfaces calculates the jacobian and uses the moore-penrose pseudoinverse to determine desired joint-velocities.
+The interfaces calculates their jacobians, then uses the moore-penrose pseudoinverse to determine desired joint-velocities.
 
 ### Euler Angles
 
