@@ -8,10 +8,18 @@ The Franka Emika Panda has several available controller interfaces for the user.
 
 - Two interfaces are designed, one utilizing euler angles and the other quaternions.
 
-### Common
+## Common
 
 The interfaces calculates their jacobians, then uses the moore-penrose pseudoinverse to determine desired joint-velocities.
 
-### Euler Angles
+## Euler Angles
 
-### Quaternions
+## Quaternions
+
+## Dependencies
+
+Wrapper around Quadratic Programming (QP) solvers in Python, with a unified interface.
+    
+    sudo apt install python3-dev
+    pip3 install qpsolvers
+

@@ -25,5 +25,6 @@
     <depend>xacro</depend>
     <depend>plotjuggler</depend>
     <depend>std_msgs</depend>
+    <depend>dynamics_wrapper</depend>
    
    </package>
