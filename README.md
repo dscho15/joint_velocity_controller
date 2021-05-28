@@ -10,11 +10,35 @@ The Franka Emika Panda has several available controller interfaces for the user.
 
 ## Common
 
-The interfaces calculates their jacobians, then uses the moore-penrose pseudoinverse to determine desired joint-velocities.
+The interface would normally compute the jacobian $J$, then use the moore-penrose pseudoinverse $J^+$ to determine desired joint-velocities.
 
-## Euler Angles
+$$
+v = J(q)\dot{q}
+$$
 
-## Quaternions
+$$
+\dot{q}=J^+(q)\dot{q}
+$$
+
+however, it does not take the dynamical hardware limits of the robot into account. In order to satisfy the constraints of the hardware, we propose a quadratic program of the form:
+
+$$
+\begin{matrix}
+\text{minimize} \; \; & \frac{1}{2} x^T H x + g^Tx \\
+\text{subject to} & Gx\leq h \\
+                  & Ax = b \\
+                  & lb \leq x \leq ub
+\end{matrix}
+$$
+
+where 
+> $x=\dot{q}$, is the joint velocities
+
+> $H=J(q)^TJ(q)$, is a positive-semi-definite matrix.
+
+> $g^T = -J(q)^T\dot{x}_d$, is a byproduct of least-squares multiplication.
+
+> $lb \; \text{and} \; ub$, is the lower bounds and upper bounds of the joint velocities $\dot{q}$, they are computed at each timestamp.
 
 ## Dependencies
 
@@ -22,4 +46,5 @@ Wrapper around Quadratic Programming (QP) solvers in Python, with a unified inte
     
     sudo apt install python3-dev
     pip3 install qpsolvers
-
+    pip3 install osqp
+    pip3 install flake8
