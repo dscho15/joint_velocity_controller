@@ -74,7 +74,7 @@ def trajectory_plot(q):
     rows = 2
     cols = 1
 
-    q = np.hstack(q).T[:,7:14]
+    q = np.hstack(q).T[:,0:7]
     t = np.arange(0, len(q)) * 0.001
     joint_plot(t, q)
     

@@ -20,24 +20,24 @@ def joint_callback(data):
     q_list.append(np.expand_dims((data.data), axis = 1))
 
 
-def cart_joint_task(interface, q_e, x, qd_prev):
+def cart_joint_task(jac, x, qd_prev):
 
     # Determine jacobian
-    jacobian = interface.jac_geometric(q_e)
+    jacobian = jac
     vd = x
 
     # Compute regularization in terms of tikhonov
-    a1 = 0.1
+    a1 = 0.5
     U1 = a1 * np.identity(7)
     u1 = a1 * np.zeros((7,))
 
     # Compute regularization in terms of previous joint velocity
-    a2 = 0.1
+    a2 = 0.5
     U2 = a2 * np.identity(7)
     u2 = a2 * qd_prev
 
     # Compute part of objective matrix and vector
-    A = np.vstack((jacobian, U1 + U2))
+    A = np.vstack((jacobian, 3*(U1 + U2)))
     b = np.hstack((vd, u1 + u2))
 
     # Compute resulting objective matrix and vector
@@ -118,7 +118,7 @@ def main():
     q_d = Float64MultiArray(data=[0, 0, 0, -2.0000, 0, 1.57000, 0])
 
     # Controller starts here
-    it = 5000
+    it = 25000
 
     # Desired velocity should be read
     qd_p = np.zeros((7,))
@@ -129,10 +129,10 @@ def main():
         xd = interface.pose_error_quaternion(q_e, q_d)
 
         # Determine gains
-        xd = np.diag(np.array([2.0, 2.0, 2.0, 2.0, 2.0, 2.0])) @ xd
+        xd = np.diag(np.array([5.0, 5.0, 5.0, 5.0, 5.0, 5.0])) @ xd
 
         # Objectives
-        H, g = cart_joint_task(interface, q_e, xd, qd_p)
+        H, g = cart_joint_task(interface.jac_geometric(q_e), xd, qd_p)
 
         # Determine limits
         qd_d = q_list[-1][7:14]
@@ -153,7 +153,7 @@ def main():
         # Update qe
         qe_list.append(np.expand_dims((q_e.data), axis = 1))
     
-    trajectory_plot(q_list[-5000:-1])
+    trajectory_plot(q_list[-25000:-1])
 
 if __name__ == "__main__":
     main()
