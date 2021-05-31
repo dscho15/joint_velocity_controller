@@ -20,7 +20,7 @@ $$
 \dot{q}=J^+(q)\dot{q}
 $$
 
-however, it does not take the dynamical hardware limits of the robot into account. In order to satisfy the constraints of the hardware, we propose a quadratic program of the form:
+however, it does not take the dynamical hardware limits of the robot into account. In order to satisfy the constraints of the hardware, we propose a quadratic program of the form
 
 $$
 \begin{matrix}
@@ -36,9 +36,11 @@ where
 
 > $H=J(q)^TJ(q)$, is a positive-semi-definite matrix.
 
-> $g^T = -J(q)^T\dot{x}_d$, is a byproduct of least-squares multiplication.
+> $g^T = -J(q)^T\dot{x}_d$, is a byproduct of least-squares multiplication. Notice $\dot{x}_d$
 
 > $lb \; \text{and} \; ub$, is the lower bounds and upper bounds of the joint velocities $\dot{q}$, they are computed at each timestamp.
+
+> We do not utilize the G-term nor the A-term, so they can be ignored as it is of now.
 
 ## Dependencies
 
