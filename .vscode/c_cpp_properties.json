@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/verypanda/Desktop/ros_workspace/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/dynamics_wrapper/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/force_torque_sensor/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/franka_control/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/franka_gazebo/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/franka_hw/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/franka_physical_controllers/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/franka_planner/include/**",
+        "/home/verypanda/Desktop/ros_workspace/src/franka_simulator_controllers/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

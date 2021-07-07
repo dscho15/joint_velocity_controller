@@ -27,12 +27,12 @@ def cart_joint_task(jac, x, qd_prev):
     vd = x
 
     # Compute regularization in terms of tikhonov
-    a1 = 0.5
+    a1 = 0.0
     U1 = a1 * np.identity(7)
     u1 = a1 * np.zeros((7,))
 
     # Compute regularization in terms of previous joint velocity
-    a2 = 0.5
+    a2 = 1.0
     U2 = a2 * np.identity(7)
     u2 = a2 * qd_prev
 
