@@ -37,15 +37,19 @@ def main():
 
     # Subscribe to the state of the joint impedance controller - [q/qd]
     sub_handle = rospy.Subscriber(
-        '/gazebo/linkstates', LinkStates, handle_callback)
+        '/gazebo/link_states', LinkStates, handle_callback)
+
+    # Subscribe to the state of the tool rotation matrix
+    sub_robot_rotm = rospy.Subscriber(
+        '/joint_position_setpoint_controller/panda/tool_rotation_matrix', JointTrajectory, robot_callback)
 
     # Subscribe to the state of the joint impedance controller
     sub_robot = rospy.Subscriber(
-        '/panda/joint_position_setpoint_controller', JointTrajectory, robot_callback)
+        '/joint_position_setpoint_controller/panda/joint_state', JointTrajectory, robot_callback)
 
     # Subscribe to the publisher of the joint impedance controller
     pub = rospy.Publisher(
-        '/panda/joint_position_setpoint_controller', JointTrajectory, queue_size=1)
+        '/joint_position_setpoint_controller/panda/move_robot', JointTrajectory, queue_size=1)
 
     # Rate update
     rate = rospy.Rate(1000)
@@ -56,8 +60,6 @@ def main():
     # Intialize KDL interface
     if not interface.initialize(start, stop).data:
         exit("KDL was not initialized")
-
-    while
 
 
 if __name__ == "__main__":
